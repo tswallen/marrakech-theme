@@ -1,0 +1,71 @@
+<div class="container-fluid bg-white" id="navigator">
+    <div class="container d-flex justify-content-center py-3">
+        <h4>{{ section.settings.title }}</h4>
+
+        <!-- Mobile -->
+        <div class="dropdown d-lg-none ml-5">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="navigatorDropdownMenuButton" data-toggle="dropdown">
+                Please select...
+            </button>
+            <div class="dropdown-menu" aria-labelledby="navigatorDropdownMenuButton">
+                {% for block in section.blocks %}
+                <a class="dropdown-item" href="#{{ block.settings.id }}">{{ block.settings.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Desktop -->
+        <ul class="nav flex-fill justify-content-around d-none d-lg-flex">
+            {% for block in section.blocks %}
+            <li class="nav-item">
+                <a class="nav-link" href="#{{ block.settings.id }}">
+                    <img src="{{ block.settings.icon | img_url: '16x16' }}">
+                    <span class="ml-1">{{ block.settings.name }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Navigator",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+            {
+                "id": "id",
+                "type": "text",
+                "label": "id"
+            },
+            {
+                "id": "name",
+                "type": "text",
+                "label": "Name"
+            },
+            {
+                "type":"image_picker",
+                "id":"icon",
+                "label":"Icon"
+            }
+        ]
+      }
+    ],
+    "presets":[
+        {
+            "name":"Navigator",
+            "category":"Store Information"
+        }
+    ]
+  }
+{% endschema %}
