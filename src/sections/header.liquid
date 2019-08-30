@@ -10,11 +10,24 @@
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
-<section>
+<section data-section-id="{{ section.id }}" data-section-type="header">
+  {%- if section.settings.announcement_bar_enabled -%}
+  <div>
+    {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+    {%- if section.settings.announcement_bar_link != blank -%}
+    <a href="{{ section.settings.announcement_bar_link }}">
+      {{ section.settings.announcement_bar_text | escape }}
+    </a>
+    {%- else -%}
+    <p>{{ section.settings.announcement_bar_text | escape }}</p>
+    {%- endif -%}
+    {%- endif -%}
+  </div>
+  {%- endif -%}
   <nav class="navbar sticky-top navbar-expand-lg navbar-light justify-content-between">
     <button class="btn btn-outline-success" type="button">Store</button>
     <a class="navbar-brand m-0" href="#"
-      style="transform: translateX(calc(50vw - 50% - 16px)); position: absolute;">Lorem Ipsum</a>
+      style="transform: translateX(calc(50vw - 50% - 16px)); position: absolute;">{{ shop.name }}</a>
     <ul class="navbar-nav collapse navbar-collapse flex-grow-0">
       {% for block in section.blocks %}
       <li class="nav-item">
