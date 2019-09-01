@@ -25,7 +25,14 @@
   </div>
   {%- endif -%}
   <nav class="navbar sticky-top navbar-expand-lg navbar-light justify-content-between">
-    <a class="btn btn-outline-success" href="/collections/all" role="button">Store</a>
+   <ul class="navbar-nav flex-grow-0">
+      <li class="nav-item">
+        <a class="btn btn-outline-success" href="/collections/all" role="button">Store</a>
+      </li>
+      <li class="nav-item d-none d-lg-block ml-2">
+        <a class="btn btn-outline-secondary" href="/cart" role="button">{{ 'layout.cart.title' | t }} ({{ cart.item_count }})</a>
+      </li>
+   </ul>
     <a class="navbar-brand m-0" href="/"
       style="transform: translateX(calc(50vw - 50% - 16px)); position: absolute;">{{ shop.name }}</a>
     <ul class="navbar-nav collapse navbar-collapse flex-grow-0">
@@ -44,9 +51,7 @@
     <div class="card">
       <div class="card-header">
         <h5 class="mb-0">
-          <a class="btn btn-link collapsed" href="#">
-            Cart
-          </a>
+          <a class="btn btn-link collapsed" href="/cart">{{ 'layout.cart.title' | t }} ({{ cart.item_count }})</a>
         </h5>
       </div>
     </div>
