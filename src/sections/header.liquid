@@ -213,7 +213,7 @@
 {% for block in section.blocks %}
   <script>
     $('#{{ block.settings.id }}').popover({
-      title: '{{ block.settings.title }}',
+      content: '{{ block.settings.body }}',
       placement: 'bottom',
       html: true,
       trigger: 'focus'
