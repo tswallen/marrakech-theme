@@ -80,9 +80,9 @@
       <div class="d-flex justify-content-end mt-5">
         {% for product in collections[block.settings.collection].products limit: 3 %}
         <a class="card ml-4 flex-row align-items-center overflow-hidden" href="{{ product.url | default: "#" }}">
-          <img src="{{ product.featured_image | img_url: '150x150' }}">
+          <img src="{{ product.featured_image | img_url: '125x125' }}">
           <div class="card-body">
-            <h5 class="card-title">{{ product.title }}</h5>
+            <h6 class="card-title">{{ product.title }}</h6>
             <p class="card-text">{{ product.price | money }}</p>
           </div>
         </a>
