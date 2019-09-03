@@ -48,32 +48,32 @@
     <div id="{{ block.settings.id }}" class="d-lg-flex mt-5">
       {% endif %}
       <div class="d-flex align-items-start justify-content-center flex-shrink-0">
-        <img src="https://placehold.it/500x500" class="img-fluid">
+        <img src="{{ block.settings.hero_img | img_url: '500x500' }}">
       </div>
       {% if block.settings.reverse %}
       <div class="d-flex flex-column align-items-center mr-lg-5 collection-list-extended">
         {% else %}
         <div class="d-flex flex-column align-items-center ml-lg-5 collection-list-extended">
           {% endif %}
-          <h4 class="text-center mt-5 mt-lg-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam nisi vitae dignissim rhoncus. Praesent vitae vestibulum elit. Aenean nec ipsum pretium, faucibus ante ac, varius nisl.</h4>
+          <h4 class="text-center mt-5 mt-lg-0">{{ block.settings.headline }}</h4>
           <div class="row mt-5">
             <div class="col-4 d-flex flex-column align-items-center">
-              <img src="https://placehold.it/100x100">
-              <p class="mt-3 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <img src="{{ block.settings.feature_1_img | img_url: '100x100' }}">
+              <p class="mt-3 text-center">{{ block.settings.feature_1_text }}</p>
             </div>
             <div class="col-4 d-flex flex-column align-items-center">
-              <img src="https://placehold.it/100x100">
-              <p class="mt-3 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <img src="{{ block.settings.feature_2_img | img_url: '100x100' }}">
+              <p class="mt-3 text-center">{{ block.settings.feature_2_text }}</p>
             </div>
             <div class="col-4 d-flex flex-column align-items-center">
-              <img src="https://placehold.it/100x100">
-              <p class="mt-3 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <img src="{{ block.settings.feature_3_img | img_url: '100x100' }}">
+              <p class="mt-3 text-center">{{ block.settings.feature_3_text }}</p>
             </div>
           </div>
-          <h4 class="text-center mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
+          <h4 class="text-center mt-5">{{ block.settings.tagline }}</h4>
           <blockquote class="blockquote ml-5 text-center w-50 mt-5">
-            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <footer class="blockquote-footer">John Doe in <cite title="Lorem Ipsum">Lorem Ipsum</cite></footer>
+            <p class="mb-0">{{ block.settings.testimonial }}</p>
+            <footer class="blockquote-footer">{{ block.settings.testimonial_author }}</footer>
           </blockquote>
         </div>
       </div>
@@ -126,6 +126,62 @@
               "label": "Collection",
               "id": "collection",
               "type": "collection"
+            },
+            {
+              "id": "hero_img",
+              "type": "image_picker",
+              "label": "Hero Image"
+            },
+            {
+              "id": "headline",
+              "type": "text",
+              "label": "Headline"
+            },
+            {
+              "id": "tagline",
+              "type": "text",
+              "label": "Tagline"
+            },
+            {
+              "id": "testimonial",
+              "type": "text",
+              "label": "Testimonial"
+            },
+            {
+              "id": "testimonial_author",
+              "type": "text",
+              "label": "Testimonial Author"
+            },
+            {
+              "id": "feature_1_img",
+              "type": "image_picker",
+              "label": "Feature 1 Image"
+            },
+            {
+              "id": "feature_1_text",
+              "type": "text",
+              "label": "Feature 1 Text"
+            },
+            {
+              "id": "feature_2_img",
+              "type": "image_picker",
+              "label": "Feature 2 Image"
+            },
+            {
+              "id": "feature_2_text",
+              "type": "text",
+              "label": "Feature 2 Text"
+            },
+
+            {
+              "id": "feature_3_img",
+              "type": "image_picker",
+              "label": "Feature 3 Image"
+            },
+            {
+              "id": "feature_3_text",
+              "type": "text",
+              "label": "Feature 3 Text"
             }
           ]
         }
