@@ -42,6 +42,9 @@
 
 <section class="collection-list container">
   {% for block in section.blocks %}
+  {% if block.type == "feature" %}
+  {% continue %}
+  {% endif %}
   {% if block.settings.reverse %}
   <div id="{{ block.settings.id }}" class="d-lg-flex flex-row-reverse pt-5">
     {% else %}
@@ -57,18 +60,15 @@
           {% endif %}
           <h4 class="text-center mt-5 mt-lg-0">{{ block.settings.headline }}</h4>
           <div class="row mt-5">
-            <div class="col-4 d-flex flex-column align-items-center">
-              <img src="{{ block.settings.feature_1_img | img_url: '100x100' }}">
-              <p class="mt-3 text-center">{{ block.settings.feature_1_text }}</p>
-            </div>
-            <div class="col-4 d-flex flex-column align-items-center">
-              <img src="{{ block.settings.feature_2_img | img_url: '100x100' }}">
-              <p class="mt-3 text-center">{{ block.settings.feature_2_text }}</p>
-            </div>
-            <div class="col-4 d-flex flex-column align-items-center">
-              <img src="{{ block.settings.feature_3_img | img_url: '100x100' }}">
-              <p class="mt-3 text-center">{{ block.settings.feature_3_text }}</p>
-            </div>
+            {% for block in section.blocks offset: forloop.index %}
+            {% if block.type != "feature" %}
+            {% break %}
+            {% endif %}
+              <div class="col-4 d-flex flex-column align-items-center">
+                <img src="{{ block.settings.feature_img | img_url: '100x100' }}">
+                <p class="mt-3 text-center">{{ block.settings.feature_text }}</p>
+              </div>
+            {% endfor %}
           </div>
           <h4 class="text-center mt-5">{{ block.settings.tagline }}</h4>
           <blockquote class="blockquote text-center w-50 mt-5">
@@ -162,41 +162,10 @@
               "id": "testimonial_author",
               "type": "text",
               "label": "Testimonial Author"
-            },
-            {
-              "id": "feature_1_img",
-              "type": "image_picker",
-              "label": "Feature 1 Image"
-            },
-            {
-              "id": "feature_1_text",
-              "type": "text",
-              "label": "Feature 1 Text"
-            },
-            {
-              "id": "feature_2_img",
-              "type": "image_picker",
-              "label": "Feature 2 Image"
-            },
-            {
-              "id": "feature_2_text",
-              "type": "text",
-              "label": "Feature 2 Text"
-            },
-
-            {
-              "id": "feature_3_img",
-              "type": "image_picker",
-              "label": "Feature 3 Image"
-            },
-            {
-              "id": "feature_3_text",
-              "type": "text",
-              "label": "Feature 3 Text"
             }
           ]
         },
-                {
+        {
           "type": "feature",
           "name": "Feature",
           "settings": [
@@ -210,7 +179,7 @@
               "type": "text",
               "label": "Feature Text"
             }
-                  ]
+          ]
         }
       ],
       "presets": [
