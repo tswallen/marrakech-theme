@@ -7,6 +7,8 @@
   - Collection
 {%- endcomment -%}
 
+{% assign collectionBlocks = section.blocks | where: "type", "collection" %}
+
 {% if section.settings.scrollspy %}
   <div class="container-fluid bg-white">
     <div class="container d-flex justify-content-center align-items-center py-3">
@@ -19,7 +21,7 @@
           Please select...
         </button>
         <div class="dropdown-menu" aria-labelledby="navigatorDropdownMenuButton">
-          {% for block in section.blocks %}
+          {% for block in collectionBlocks %}
           <a class="dropdown-item scroll" href="#{{ block.settings.id }}" onclick="navigate(event, this)">{{ block.settings.name }}</a>
           {% endfor %}
         </div>
@@ -27,7 +29,7 @@
 
       <!-- Desktop -->
       <ul class="nav flex-fill justify-content-around d-none d-lg-flex">
-        {% for block in section.blocks %}
+        {% for block in collectionBlocks %}
         <li class="nav-item">
           <a class="nav-link scroll" href="#{{ block.settings.id }}" onclick="navigate(event, this)">
             <img src="{{ block.settings.icon | img_url: '16x16' }}">
