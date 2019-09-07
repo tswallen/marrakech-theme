@@ -8,7 +8,7 @@
 {%- endcomment -%}
 
 {% if section.settings.scrollspy %}
-  <div class="container-fluid bg-white" id="navigator">
+  <div class="container-fluid bg-white">
     <div class="container d-flex justify-content-center align-items-center py-3">
       <h4>{{ section.settings.title }}</h4>
 
@@ -20,7 +20,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="navigatorDropdownMenuButton">
           {% for block in section.blocks %}
-          <a class="dropdown-item" href="#{{ block.settings.id }}">{{ block.settings.name }}</a>
+          <a class="dropdown-item scroll" href="#{{ block.settings.id }}" onclick="navigate(event, this)">{{ block.settings.name }}</a>
           {% endfor %}
         </div>
       </div>
@@ -29,7 +29,7 @@
       <ul class="nav flex-fill justify-content-around d-none d-lg-flex">
         {% for block in section.blocks %}
         <li class="nav-item">
-          <a class="nav-link" href="#{{ block.settings.id }}">
+          <a class="nav-link scroll" href="#{{ block.settings.id }}" onclick="navigate(event, this)">
             <img src="{{ block.settings.icon | img_url: '16x16' }}">
             <span class="ml-1">{{ block.settings.name }}</span>
           </a>
@@ -40,12 +40,12 @@
   </div>
 {% endif %}
 
-<section class="collection-list container" data-spy="scroll" data-target="#navigator" data-offset="0">
+<section class="collection-list container">
   {% for block in section.blocks %}
   {% if block.settings.reverse %}
-  <div id="{{ block.settings.id }}" class="d-lg-flex flex-row-reverse mt-5">
+  <div id="{{ block.settings.id }}" class="d-lg-flex flex-row-reverse pt-5">
     {% else %}
-    <div id="{{ block.settings.id }}" class="d-lg-flex mt-5">
+    <div id="{{ block.settings.id }}" class="d-lg-flex pt-5">
       {% endif %}
       <div class="d-flex align-items-start justify-content-center flex-shrink-0">
         <img src="{{ block.settings.hero_img | img_url: '500x500' }}">
@@ -205,3 +205,20 @@
       ]
     }
   {% endschema %}
+
+{% if section.settings.scrollspy %}
+<script>
+  navigate = (event, target) => {
+    const id = $(target).attr('href');
+    const offset = $('.navbar').outerHeight();
+
+    event.preventDefault();
+
+    window.scrollTo({
+      top: $(id).position().top - offset,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+</script>
+{% endif %}
