@@ -66,7 +66,7 @@
             {% if block.type != "feature" %}
             {% break %}
             {% endif %}
-              <div class="col-4 d-flex flex-column align-items-center">
+              <div class="col-lg d-flex flex-column align-items-center">
                 <img src="{{ block.settings.feature_img | img_url: '100x100' }}">
                 <p class="mt-3 text-center">{{ block.settings.feature_text }}</p>
               </div>
@@ -79,9 +79,9 @@
           </blockquote>
         </div>
       </div>
-      <div class="d-flex justify-content-end mt-5">
+      <div class="d-lg-flex justify-content-end mt-lg-5">
         {% for product in collections[block.settings.collection].products limit: 3 %}
-        <a class="card ml-4 flex-row align-items-center overflow-hidden" href="{{ product.url | default: "#" }}">
+        <a class="card mt-5 mt-lg-0 ml-lg-4 flex-row align-items-center overflow-hidden" href="{{ product.url | default: "#" }}">
           <img src="{{ product.featured_image | img_url: '125x125' }}">
           <div class="card-body">
             <h6 class="card-title">{{ product.title }}</h6>
